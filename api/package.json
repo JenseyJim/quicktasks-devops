@@ -1,0 +1,13 @@
+{
+  "name": "quicktasks-api",
+  "version": "1.0.0",
+  "description": "API Express + SQLite para QuickTasks DevOps",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node src/server.js"
+  },
+  "author": "Jensey Jimenez",
+  "license": "ISC"
+}
