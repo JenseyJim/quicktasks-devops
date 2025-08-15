@@ -9,5 +9,13 @@
     "dev": "node src/server.js"
   },
   "author": "Jensey Jimenez",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "mongodb": "^6.18.0",
+    "morgan": "^1.10.1",
+    "prom-client": "^15.1.3"
+  }
 }
