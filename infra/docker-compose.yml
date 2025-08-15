@@ -1,0 +1,23 @@
+services:
+  mongo:
+    image: mongo:6
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  api:
+    build:
+      context: ../api
+    depends_on:
+      - mongo
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - MONGODB_URI=mongodb://mongo:27017
+      - DB_NAME=quicktasks
+    restart: unless-stopped
+
+volumes:
+  mongo-data:
