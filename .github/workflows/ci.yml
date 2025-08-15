@@ -1,4 +1,4 @@
-name: CI QuickTasks API
+name: CI/CD QuickTasks API
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
   pull_request:
 
 jobs:
-  build-test:
+  build-test-deploy:
     runs-on: ubuntu-latest
 
     services:
@@ -22,22 +22,30 @@ jobs:
           --health-retries 5
 
     steps:
-      - name: Checkout código
+      - name: 📥 Checkout código
         uses: actions/checkout@v4
 
-      - name: Configurar Node.js
+      - name: 🛠 Configurar Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      - name: Instalar dependencias
+      - name: 📦 Instalar dependencias
         run: npm install
         working-directory: ./api
 
-      - name: Ejecutar pruebas
+      - name: 🧪 Ejecutar pruebas
         env:
           MONGODB_URI: mongodb://localhost:27017
           DB_NAME: quicktasks
           PORT: 3000
         run: npm test
         working-directory: ./api
+
+      - name: 🚀 Despliegue simulado
+        if: success()
+        run: |
+          echo "Desplegando la API (simulación para CD básico)..."
+          mkdir -p deploy
+          cp -r ./api/* deploy/
+          echo "✅ Despliegue completado."
